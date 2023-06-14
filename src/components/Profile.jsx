@@ -7,10 +7,11 @@ const Profile = () => {
   const [mydata, setData] = useState(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  if (!token) return navigate("/");
   useEffect(() => {
     axios
-    .get("/auth/user", {
-      headers: {
+      .get("/auth/user", {
+        headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
@@ -22,10 +23,9 @@ const Profile = () => {
         navigate("/");
         console.error(error);
       });
-    }, []);
-    if (!token) return navigate("/");
-    
-    const logout = () => {
+  }, []);
+
+  const logout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
