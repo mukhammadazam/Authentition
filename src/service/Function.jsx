@@ -15,9 +15,6 @@ const AuthServes = {
     const res = await axios.post("/auth/login", { email, password });
     localStorage.setItem("token", res.data.token);
   },
-  async Delet() {
-    const response = await axios.delete("/auth/logout");
-    console.log(response);
-  },
+ 
 };
 export default AuthServes;

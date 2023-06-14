@@ -7,11 +7,10 @@ const Profile = () => {
   const [mydata, setData] = useState(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  if (!token) return navigate("/");
   useEffect(() => {
     axios
-      .get("/auth/user", {
-        headers: {
+    .get("/auth/user", {
+      headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
@@ -20,13 +19,13 @@ const Profile = () => {
         setData(res.data.data.name);
       })
       .catch((error) => {
-        console.error(error);
         navigate("/");
+        console.error(error);
       });
-  }, []);
-
-  const logout = () => {
-    AuthServes.Delet();
+    }, []);
+    if (!token) return navigate("/");
+    
+    const logout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
