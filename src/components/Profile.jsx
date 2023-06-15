@@ -1,13 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import axios from "../service/axios.js";
 import React, { useEffect, useState } from "react";
-import AuthServes from "../service/Function.jsx";
-
 const Profile = () => {
   const [mydata, setData] = useState(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  if (!token) return navigate("/");
   useEffect(() => {
     axios
       .get("/auth/user", {
@@ -24,6 +21,7 @@ const Profile = () => {
         console.error(error);
       });
   }, []);
+  if (!token) return navigate("/");
 
   const logout = () => {
     localStorage.removeItem("token");

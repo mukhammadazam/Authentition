@@ -16,6 +16,7 @@ const Register = () => {
       password.current.value,
       password_confirmation.current.value
     );
+    push("/login");
   };
   return (
     <div>
