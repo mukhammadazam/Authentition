@@ -13,8 +13,16 @@ const AuthServes = {
 
   async Login(email, password) {
     const res = await axios.post("/auth/login", { email, password });
-    localStorage.setItem("token", res.data.token);
+    return res.data.token
   },
- 
-};
+
+  async getAuthedUser(token) {
+
+    // const token = await localStorage.getItem("token");
+    console.log(token);
+    const config = { headers: { 'Authorization': `Basic ${token}` } };
+
+    return await axios.get("/auth/user", config);
+  }
+}
 export default AuthServes;

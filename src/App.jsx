@@ -6,6 +6,7 @@ import ProfileComponent from "./components/Profile";
 import Home from "./components/Home";
 function App() {
   const url = import.meta.env.VITE_BASE_URL;
+
   return (
     <>
       <Routes>
