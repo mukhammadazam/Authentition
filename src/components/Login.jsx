@@ -1,13 +1,19 @@
 import React, { useRef } from "react";
 import AuthServes from "../service/Function";
 import { useNavigate } from "react-router-dom";
+import useToken from "../hooks/useToken";
 const Login = () => {
   const email = useRef("");
   const password = useRef("");
   const navigate = useNavigate();
-  const login = (e) => {
+
+  const [token, setToken] = useToken('token');
+
+  const login = async (e) => {
     e.preventDefault();
-    AuthServes.Login(email.current.value, password.current.value);
+    const token = await AuthServes.Login(email.current.value, password.current.value);
+    console.log(token);
+    setToken(token);
     navigate("/profile");
   };
  
