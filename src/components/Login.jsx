@@ -10,12 +10,13 @@ const Login = () => {
     AuthServes.Login(email.current.value, password.current.value);
     navigate("/profile");
   };
+ 
   return (
     <div>
       <form onSubmit={login} className='form'>
         <input ref={email} type='email' placeholder='Email' required />
         <input ref={password} type='password' placeholder='Password' required />
-        <button className=' w-100' type='submit'>
+        <button  className=' w-100' type='submit'>
           Login
         </button>
       </form>
